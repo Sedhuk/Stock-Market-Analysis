@@ -1,0 +1,21 @@
+# Data Processing
+pandas>=2.0.0
+numpy>=1.24.0
+PyYAML>=6.0
+
+# Database
+mysql-connector-python>=8.1.0
+
+# Web Framework & Visualization
+streamlit>=1.28.0
+plotly>=5.17.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Configuration
+python-dotenv>=1.0.0
+
+# Testing
+pytest>=7.4.0
+hypothesis>=6.88.0
+pytest-cov>=4.1.0
