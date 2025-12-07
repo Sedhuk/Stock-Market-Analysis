@@ -1,116 +1,113 @@
-🚀 Features
+# Streamlit Stock Dashboard
+
+A Streamlit app for exploring stock OHLCV data, analyzing performance, volatility, sector trends, and more.
+
+## Features
 1. Filtered Stock Data Viewer
-
-Select stocks by ticker
-
-Filter by month
-
-View full OHLCV data in an interactive table
+   - Select stocks by ticker
+   - Filter by month
+   - View full OHLCV data in an interactive table
 
 2. Top 10 Yearly Gainers & Losers
-
-Automatically calculates yearly returns from closing prices
-
-Dynamic bar charts for best and worst-performing stocks
+   - Calculates yearly returns from closing prices
+   - Dynamic bar charts for best and worst performers
 
 3. Top 10 Most Volatile Stocks
-
-Volatility calculated using standard deviation of daily returns
-
-Bar chart highlighting the riskiest stocks
+   - Volatility calculated as the standard deviation of daily returns
+   - Bar chart highlighting the riskiest stocks
 
 4. Cumulative Return Trend
-
-Line chart showing cumulative returns over time
-
-Supports comparison of multiple stocks
+   - Line chart showing cumulative returns over time
+   - Compare multiple stocks
 
 5. Sector-wise Performance
-
-Merges stock tickers with sector data
-
-Shows sector-level average yearly performance
+   - Merge tickers with sector data
+   - Show sector-level average yearly performance
 
 6. Monthly Gainers & Losers
-
-Select a month and instantly view:
-
-Top 5 gainers
-
-Top 5 losers
+   - Select a month to view top 5 gainers and top 5 losers
 
 7. Correlation Heatmap
+   - Heatmap of correlations between closing prices
+   - Useful for portfolio diversification analysis
 
-Displays a heatmap of correlations between closing prices
-
-Helpful for portfolio diversification analysis
-
-📁 Project Structure
-📦 streamlit-stock-dashboard
-│
+## Project Structure
+```
+streamlit-stock-dashboard/
 ├── app.py                # Main Streamlit application
 ├── data/
 │   ├── stock_data.csv    # Daily stock OHLCV data
-│   └── sector_data.csv   # Ticker-to-sector mapping
-│
+│   └── sector_data.csv   # Ticker → sector mapping
 ├── requirements.txt      # Required Python libraries
 └── README.md             # Project documentation
+```
 
-🛠️ Installation & Setup
-1. Clone the Repository
+## Installation & Setup (Windows)
+1. Clone the repository
+```bash
 git clone <repo-url>
 cd streamlit-stock-dashboard
+```
 
-2. Install Dependencies
+2. Create and activate a virtual environment (Windows)
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1   # PowerShell
+# or
+.venv\Scripts\activate.bat   # cmd
+```
+
+3. Install dependencies
+```bash
 pip install -r requirements.txt
+```
 
-3. Run the Streamlit App
+4. Run the Streamlit app
+```bash
 streamlit run app.py
+```
 
-📦 Required Python Libraries
-
-Your requirements.txt should contain:
-
+## Required Python Libraries
+Add at least the following to requirements.txt:
+```
 streamlit
 pandas
 numpy
 plotly
 yfinance
+```
+(Adjust as needed for your project.)
 
+## Data Processing (formulas)
+- Daily return:
+  - daily_return = (Close_today - Close_yesterday) / Close_yesterday
+- Yearly return:
+  - yearly_return = (Last_Close_of_Year - First_Close_of_Year) / First_Close_of_Year
+- Volatility:
+  - volatility = standard deviation of daily returns
+- Cumulative return (preferred multiplicative approach):
+  - cumulative_return = (1 + daily_return).cumprod() - 1
 
-(Add/remove based on your project)
+## Available Dashboards
+- Filter Stock Data — Shows dataset for selected filters  
+- Yearly Gainers — Top 10 best performers  
+- Yearly Losers — Top 10 worst performers  
+- Volatility — Most volatile stocks by daily-return stddev  
+- Cumulative Return — Multi-stock performance trend  
+- Sector Analysis — Average yearly return by sector  
+- Monthly Gainers/Losers — Top monthly performers
 
-📊 How the Data Is Processed
-Daily Returns
+## Data Files
+- data/stock_data.csv — daily OHLCV with Date and Ticker columns  
+- data/sector_data.csv — mapping of Ticker → Sector for sector-level analysis
 
-Calculated using:
+## Notes & Best Practices
+- Parse date columns as datetime and sort by date before calculating returns.  
+- Use the multiplicative cumulative return formula to account for compounding.  
+- Handle missing trading days (weekends/holidays) when computing returns.
 
-daily_return = (Close_today - Close_yesterday) / Close_yesterday
-
-Yearly Return
-yearly_return = (Last_Close_of_Year - First_Close_of_Year) / First_Close_of_Year
-
-Volatility
-volatility = standard deviation of all daily returns
-
-Cumulative Return
-cumulative_return = cumulative sum of daily returns
-
-🌐 Available Dashboards
-Dashboard Section	Description
-Filter Stock Data	Shows full dataset for selected filters
-Yearly Gainers	Top 10 best performers
-Yearly Losers	Top 10 worst performers
-Volatility	Most volatile stocks
-Cumulative Return	Multi-stock performance trend
-Sector Analysis	Avg yearly return by sector
-Monthly Gainers/Losers	Monthly performers
-⭐ Future Enhancements
-
-Multi-year sector comparison
-
-Portfolio comparison module
-
-Forecasting with ARIMA/Prophet
-
-Real-time live stock updates
+## Future Enhancements
+- Multi-year sector comparison  
+- Portfolio comparison (allocation-based metrics)  
+- Forecasting with ARIMA / Prophet  
+- Real-time stock updates (websockets/streaming)
