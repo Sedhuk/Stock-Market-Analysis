@@ -1,4 +1,4 @@
-# Streamlit Stock Dashboard
+#Stock Analysis Dashboard
 
 A Streamlit app for exploring stock OHLCV data, analyzing performance, volatility, sector trends, and more.
 
@@ -100,14 +100,3 @@ yfinance
 ## Data Files
 - data/stock_data.csv — daily OHLCV with Date and Ticker columns  
 - data/sector_data.csv — mapping of Ticker → Sector for sector-level analysis
-
-## Notes & Best Practices
-- Parse date columns as datetime and sort by date before calculating returns.  
-- Use the multiplicative cumulative return formula to account for compounding.  
-- Handle missing trading days (weekends/holidays) when computing returns.
-
-## Future Enhancements
-- Multi-year sector comparison  
-- Portfolio comparison (allocation-based metrics)  
-- Forecasting with ARIMA / Prophet  
-- Real-time stock updates (websockets/streaming)
