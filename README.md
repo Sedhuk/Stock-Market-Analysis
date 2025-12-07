@@ -1,137 +1,116 @@
-# Stock Analysis Dashboard
+🚀 Features
+1. Filtered Stock Data Viewer
 
-A comprehensive data analysis and visualization system for Nifty 50 stocks. The system processes historical stock data from YAML files, performs data cleaning and transformation, stores data in a SQL database, and provides interactive visualizations through a Streamlit dashboard.
+Select stocks by ticker
 
-## Features
+Filter by month
 
-- Extract and transform stock data from YAML files
-- Data cleaning and validation
-- MySQL database storage
-- Performance analysis (top/worst performers)
-- Volatility analysis
-- Cumulative returns tracking
-- Sector-wise performance analysis
-- Correlation analysis
-- Monthly trend analysis
-- Interactive Streamlit dashboard
+View full OHLCV data in an interactive table
 
-## Project Structure
+2. Top 10 Yearly Gainers & Losers
 
-```
-stock-analysis-dashboard/
-├── .env.example          # Environment configuration template
-├── .gitignore           # Git ignore rules
-├── requirements.txt     # Python dependencies
-├── README.md           # Project documentation
-├── app.py              # Main Streamlit application
-├── config/             # Configuration files
-├── src/                # Source code
-│   ├── data_extraction.py
-│   ├── data_cleaning.py
-│   ├── database.py
-│   ├── analysis.py
-│   ├── visualization.py
-│   └── utils.py
-├── tests/              # Test files
-├── scripts/            # Utility scripts
-├── raw_data/           # Raw YAML data files
-└── refined_data/       # Processed CSV files
-```
+Automatically calculates yearly returns from closing prices
 
-## Setup Instructions
+Dynamic bar charts for best and worst-performing stocks
 
-### 1. Clone the repository
+3. Top 10 Most Volatile Stocks
 
-```bash
-git clone <repository-url>
-cd stock-analysis-dashboard
-```
+Volatility calculated using standard deviation of daily returns
 
-### 2. Create virtual environment
+Bar chart highlighting the riskiest stocks
 
-```bash
-python -m venv venv
-```
+4. Cumulative Return Trend
 
-### 3. Activate virtual environment
+Line chart showing cumulative returns over time
 
-**Windows:**
-```bash
-venv\Scripts\activate
-```
+Supports comparison of multiple stocks
 
-**Linux/Mac:**
-```bash
-source venv/bin/activate
-```
+5. Sector-wise Performance
 
-### 4. Install dependencies
+Merges stock tickers with sector data
 
-```bash
+Shows sector-level average yearly performance
+
+6. Monthly Gainers & Losers
+
+Select a month and instantly view:
+
+Top 5 gainers
+
+Top 5 losers
+
+7. Correlation Heatmap
+
+Displays a heatmap of correlations between closing prices
+
+Helpful for portfolio diversification analysis
+
+📁 Project Structure
+📦 streamlit-stock-dashboard
+│
+├── app.py                # Main Streamlit application
+├── data/
+│   ├── stock_data.csv    # Daily stock OHLCV data
+│   └── sector_data.csv   # Ticker-to-sector mapping
+│
+├── requirements.txt      # Required Python libraries
+└── README.md             # Project documentation
+
+🛠️ Installation & Setup
+1. Clone the Repository
+git clone <repo-url>
+cd streamlit-stock-dashboard
+
+2. Install Dependencies
 pip install -r requirements.txt
-```
 
-### 5. Configure environment
-
-Copy `.env.example` to `.env` and update with your configuration:
-
-```bash
-copy .env.example .env  # Windows
-cp .env.example .env    # Linux/Mac
-```
-
-Edit `.env` file with your database credentials and paths.
-
-### 6. Set up MySQL database
-
-```sql
-CREATE DATABASE stock_data;
-```
-
-### 7. Run the application
-
-```bash
+3. Run the Streamlit App
 streamlit run app.py
-```
 
-## Testing
+📦 Required Python Libraries
 
-Run all tests:
+Your requirements.txt should contain:
 
-```bash
-pytest tests/ -v
-```
+streamlit
+pandas
+numpy
+plotly
+yfinance
 
-Run tests with coverage:
 
-```bash
-pytest tests/ -v --cov=src
-```
+(Add/remove based on your project)
 
-Run property-based tests:
+📊 How the Data Is Processed
+Daily Returns
 
-```bash
-pytest tests/test_properties.py -v
-```
+Calculated using:
 
-## Usage
+daily_return = (Close_today - Close_yesterday) / Close_yesterday
 
-1. **Data Processing**: Extract and clean data from YAML files
-2. **Database Loading**: Load processed data into MySQL database
-3. **Dashboard**: Launch Streamlit dashboard to explore visualizations
-4. **Analysis**: View performance, volatility, sector analysis, and more
+Yearly Return
+yearly_return = (Last_Close_of_Year - First_Close_of_Year) / First_Close_of_Year
 
-## Requirements
+Volatility
+volatility = standard deviation of all daily returns
 
-- Python 3.8+
-- MySQL/MariaDB 8.0+
-- 50 Nifty stocks data in YAML format
-- Sector mapping CSV file
+Cumulative Return
+cumulative_return = cumulative sum of daily returns
 
-## License
+🌐 Available Dashboards
+Dashboard Section	Description
+Filter Stock Data	Shows full dataset for selected filters
+Yearly Gainers	Top 10 best performers
+Yearly Losers	Top 10 worst performers
+Volatility	Most volatile stocks
+Cumulative Return	Multi-stock performance trend
+Sector Analysis	Avg yearly return by sector
+Monthly Gainers/Losers	Monthly performers
+⭐ Future Enhancements
 
-This project is for educational and analysis purposes.
+Multi-year sector comparison
 
-## Contributing
+Portfolio comparison module
 
-Contributions are welcome! Please follow the existing code structure and add tests for new features.
+Forecasting with ARIMA/Prophet
+
+Real-time live stock updates
