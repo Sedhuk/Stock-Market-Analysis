@@ -106,10 +106,16 @@ with tabs[1]:
         st.subheader("Top 10 Gainers")
         fig1 = px.bar(top_gainers, x='Ticker', y='yearly_return', title="Top 10 Best Performing Stocks")
         st.plotly_chart(fig1, use_container_width=True)
+        
     with col2:
         st.subheader("Top 10 Losers")
         fig2 = px.bar(top_losers, x='Ticker', y='yearly_return', title="Top 10 Worst Performing Stocks")
         st.plotly_chart(fig2, use_container_width=True)
+     
+    
+        
+        
+    
 
 # -------------------------
 # Tab 3: Volatility
@@ -119,6 +125,7 @@ with tabs[2]:
     volatility = df.groupby("Ticker")['daily_return'].std().sort_values(ascending=False).head(10)
     fig3 = px.bar(volatility, x=volatility.index, y=volatility.values, title="Top 10 Volatile Stocks")
     st.plotly_chart(fig3, use_container_width=True)
+ 
 
 # -------------------------
 # Tab 4: Cumulative Return
@@ -153,6 +160,7 @@ with tabs[4]:
             sector_perf = df_sector.groupby("sector")['yearly_return'].mean().sort_values(ascending=False)
             fig5 = px.bar(sector_perf, x=sector_perf.index, y=sector_perf.values, title="Average Yearly Return by Sector")
             st.plotly_chart(fig5, use_container_width=True)
+            
         else:
             st.warning("Sector data not available from DB.")
     except Exception as e:
