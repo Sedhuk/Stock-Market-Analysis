@@ -56,8 +56,8 @@ refined_data/
 !.env.example
 
 # Jupyter Notebook
-.ipynb_checkpoints
-*.ipynb
+#.ipynb_checkpoints
+#*.ipynb
 
 # Logs
 *.log
