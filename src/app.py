@@ -44,8 +44,7 @@ def load_data():
 df = load_data()
 if df.empty:
     st.error("No data loaded.")
-else:
-    st.success("Stock data loaded successfully!")
+
 
 # -------------------------
 # Compute Returns for all tabs
